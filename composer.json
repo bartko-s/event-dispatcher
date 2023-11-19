@@ -1,0 +1,25 @@
+{
+  "name": "stefano/event-dispatcher",
+  "description": "Event dispatcher for Nette Framework",
+  "keywords": [
+    "nette",
+    "symfony",
+    "event",
+    "dispatcher",
+    "emitter"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": ">=8.1",
+    "contributte/event-dispatcher": "^0.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "Stefano\\EventDispatcher\\": "src"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  }
+}

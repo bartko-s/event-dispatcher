@@ -1,0 +1,55 @@
+{templateType Stefano\NetteEventLogger\Tracy\EventTracyPanelTemplate}
+<h1>Event Logger</h1>
+
+<div class="tracy-inner">
+    <div class="tracy-inner-container">
+        <h2>Events</h2>
+        <div class="tracy-inner">
+            <table class="tracy-sortable">
+                <tbody>
+                <tr>
+                    <th style="width: 30px;"></th>
+                    <th>Time</th>
+                    <th></th>
+                </tr>
+                <tr n:foreach="$logger->getEventLogs() as $log">
+                    <td>{$iterator->counter}</td>
+                    <td style="white-space: nowrap;">{round($log->getTime(), 2)} ms</td>
+                    <td>
+                        <b>Event: </b>{$log->getEventClass()}<br>
+                        <b>Event info: </b>{$log->getEventInfo()}<br>
+                    </td>
+                </tr>
+                <tr n:if="count($logger->getEventLogs()) == 0">
+                    <td colspan="999">No events was dispatched</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Listeners</h2>
+        <table class="tracy-sortable">
+            <tbody>
+            <tr>
+                <th style="width: 30px;"></th>
+                <th>Time</th>
+                <th></th>
+                <th>Executed</th>
+            </tr>
+            <tr n:foreach="$logger->getListenerLogs() as $log">
+                <td>{$iterator->counter}</td>
+                <td style="white-space: nowrap;">{round($log->getTime(), 2)} ms</td>
+                <td>
+                    <b>Listener: </b>{$log->getListener()}<br>
+                    <b>Event: </b>{$log->getEventClass()}<br>
+                    <b>Event info: </b>{$log->getEventInfo()}<br>
+                </td>
+				<td>{if $log->wasStopped()}no{else}yes{/if}</td>
+            </tr>
+            <tr n:if="count($logger->getListenerLogs()) == 0">
+                <td colspan="999">No listeners was called</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
